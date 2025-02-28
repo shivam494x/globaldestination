@@ -75,68 +75,60 @@ export default function Home() {
     },
   ];
   return (
-    <>
-      {/* Heor section */}
-      <section id="hero" className="h-full relative">
-        <div className="absolute left-0 top-0 w-full h-full -z-10 brightness-50">
+    <div className="bg-black">
+      {/* Hero section */}
+      <section id="hero" className="h-screen relative flex items-center justify-center text-center px-4">
+        <div className="absolute left-0 top-0 w-full h-full z-0 brightness-50">
           <Crouser imgs={imgs} />
         </div>
-        <div className="top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 relative w-max text-white">
-          <h1 className="text-center uppercase text-4xl tracking-tighter font-semibold font-karla">
+        <div className="relative w-full max-w-2xl text-white z-10">
+          <h1 className="uppercase text-3xl md:text-4xl lg:text-5xl tracking-tight font-semibold font-karla">
             Welcome to Global Destination
           </h1>
-          <div className="h-[2px] rounded-full my-4 w-1/2 bg-secondary m-auto"></div>
-          <h3 className="text-center capitalize text-3xl tracking-wider">
+          <div className="h-[2px] rounded-full my-4 w-1/2 bg-secondary mx-auto"></div>
+          <h3 className="capitalize text-xl md:text-2xl lg:text-3xl tracking-wider">
             Explore the Amazing City
           </h3>
         </div>
       </section>
+
       {/* Domestic packages */}
-      <section
-        id="domestic_deals"
-        className="section-y section-x container mx-auto bg-black text-white py-10"
-      >
-        <div className="text-3xl font-bold capitalize font-karla mb-16 text-center">
+      <section id="domestic_deals" className="container mx-auto text-white py-10 px-4">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
           <h3 className="w-max mx-auto">
             Our <span className="text-green-400">Domestic</span> Packages
             <div className="h-[1px] rounded-full w-3/4 mx-auto bg-green my-3"></div>
           </h3>
         </div>
-
         <PackageCardSlider packages={DomesticPackages} />
       </section>
 
       {/* International packages */}
-      <section
-        id="international_deals"
-        className="section-y section-x container mx-auto bg-black text-white py-10"
-      >
-        <div className="text-3xl font-bold capitalize font-karla mb-16 text-center">
+      <section id="international_deals" className="container mx-auto text-white py-10 px-4">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
           <h3 className="w-max mx-auto">
             Our <span className="text-blue-400">International</span> Packages
             <div className="h-[1px] rounded-full w-3/4 mx-auto bg-blue my-3"></div>
           </h3>
         </div>
-
         <PackageCardSlider packages={InternationalPackages} />
       </section>
 
-      {/* why chose us */}
-      <section id="whyUs" className="section-x section-y container mx-auto">
-        <div>
-          <h5>
-            Why choose us
-          </h5>
-        </div>
-        <div className="img">
-          {/* <Image
-            src={"https://globaldestination.in/assets/images/Switzerland.png"}
-            alt="us"
-            width={200}
-            height={100}
-          /> */}
+      {/* Why choose us */}
+      <section id="whyUs" className="container mx-auto py-10 px-4 text-center">
+        <h5 className="text-xl md:text-2xl font-bold">Why Choose Us</h5>
+        <div className="flex flex-col md:flex-row items-center justify-center mt-6">
+          <div className="w-full md:w-1/2 px-4">
+            <p className="text-sm md:text-base leading-relaxed">
+              We offer the best travel deals, experienced guides, and tailored packages to make your journey unforgettable.
+            </p>
+          </div>
+          <div className="w-full md:w-1/2 px-4 mt-4 md:mt-0">
+            <img src="/images/why-us.jpg" alt="Why Choose Us" className="w-full rounded-lg shadow-lg" />
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
+
 }
