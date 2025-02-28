@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Nav from "@/components/Nav";
+import { Karla, Inter } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const karla = Karla({
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+export const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,10 +24,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navLinks = [
+    { name: "home", href: "/" },
+    { name: "domestic", href: "/domestic" },
+    { name: "international", href: "/international" },
+    { name: "fixed departure", href: "/fixed" },
+    { name: "blog", href: "/blog" },
+    { name: "hot deals", href: "/deals" },
+    { name: "about", href: "/about" },
+    { name: "contact", href: "/contact" },
+  ];
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={`${inter.className} ${karla.className} antialiased`}>
+        <header className="absolute left-0 top-0 w-full h-20 px-5 py-3 flex justify-between items-center z-10">
+          <div className="logo">
+            <Image
+              src="/img/logo.webp"
+              alt="logo"
+              width={100}
+              height={20}
+              priority
+            />
+          </div>
+          <nav className="h-full">
+            <Nav navLinks={navLinks} />
+          </nav>
+        </header>
+        <main className="relative top-0 left-0 h-[30vh] md:h-[50vh] lg:h-[100vh]">
+          {children}
+        </main>
+        
       </body>
     </html>
   );
