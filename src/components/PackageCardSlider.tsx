@@ -3,7 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { MapPin, Calendar, ArrowUp } from "lucide-react";
 
 // Define TypeScript type for packages
@@ -15,17 +15,25 @@ type Package = {
 
 type PackageCardSliderProps = {
   packages: Package[];
+  reverse: boolean;
 };
 
 export default function PackageCardSlider({
   packages,
+  reverse,
 }: PackageCardSliderProps) {
   return (
     <Swiper
-      modules={[Navigation]}
+      modules={[Navigation, Autoplay]}
       spaceBetween={20}
       slidesPerView={1}
       navigation={true}
+      autoplay={{
+        delay: 4000, // Set delay to 1 second (1000ms)
+        disableOnInteraction: false,
+        reverseDirection: reverse,
+      }}
+      loop={true}
       breakpoints={{
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },

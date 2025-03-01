@@ -89,7 +89,10 @@ export default function Home() {
               <Divider />
             </h3>
           </div>
-          <PackageCardSlider packages={packages} />
+          <PackageCardSlider
+            packages={packages}
+            reverse={id === "domestic_deals" ? true : false}
+          />
         </section>
       ))}
 
