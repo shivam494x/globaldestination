@@ -3,6 +3,7 @@ import "./globals.css";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import { Karla, Inter } from "next/font/google";
+import { Footer } from "@/components/Footer";
 
 export const karla = Karla({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${karla.className} antialiased`}>
-        <header className="absolute left-0 top-0 w-full h-20 px-5 py-3 flex justify-between items-center z-10">
+        <header className="absolute left-0 top-0 w-full h-20 px-5 py-3 flex justify-between items-center z-20">
           <div className="logo">
             <Image
               src="/img/logo.webp"
@@ -49,13 +50,14 @@ export default function RootLayout({
             />
           </div>
           <nav className="h-full">
-            <Nav navLinks={navLinks} />
+            {/* <Nav navLinks={navLinks} /> */}
+            <Nav />
           </nav>
         </header>
         <main className="relative top-0 left-0 h-[30vh] md:h-[50vh] lg:h-[100vh]">
           {children}
+          <Footer />
         </main>
-        
       </body>
     </html>
   );

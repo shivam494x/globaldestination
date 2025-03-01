@@ -140,14 +140,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
 @theme {
   --font-display: "Satoshi", sans-serif;
   --font-karla: Karla, sans-serif;
   --font-inter: Inter, sans-serif;
   --color-primary: #f5ff81;
   --color-secondary: #66d2ce;
-  --color-black: #09122c;
+  --color-darkBlue: #09122c;
   --color-green: #a0ff67;
-  --color-blue: #344CB7;
+  --color-blue: #4265ff;
 }
+
+nav ul > li:last-child {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+}
+/* nav ul > li:last-child:hover {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+} */

@@ -12,17 +12,17 @@ export default function ErrorPage() {
   return (
     <div
       className={`${
-        isDarkMode ? "bg-black text-white" : "bg-white text-black"
+        isDarkMode ? "bg-darkBlue text-white" : "bg-white text-black"
       } min-h-screen flex flex-col items-center justify-center font-sans`}
     >
       <div className="flex flex-col items-center space-y-6 text-center">
         {/* Eyes */}
         <div className="flex space-x-2">
           <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
-            <div className="w-8 h-8 bg-black rounded-full animate-bounce"></div>
+            <div className="w-8 h-8 bg-darkBlue rounded-full animate-bounce"></div>
           </div>
           <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
-            <div className="w-8 h-8 bg-black rounded-full animate-bounce"></div>
+            <div className="w-8 h-8 bg-darkBlue rounded-full animate-bounce"></div>
           </div>
         </div>
 
