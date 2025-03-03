@@ -8,7 +8,7 @@ interface Package {
 
 interface CardProps {
   pkg: Package;
-  color?: "green" | "blue" | "red" | "yellow"; 
+  color?: "green" | "blue" | "red" | "yellow";
   className?: string;
 }
 
@@ -29,18 +29,21 @@ export default function Card({
     red: "text-red-400",
     yellow: "text-yellow-400",
   };
-  
+
   const hasWidth = /w-\d+|w-full|w-auto|w-\[.*?\]/.test(className);
   const computedClassName = hasWidth ? className : `w-[350px] ${className}`;
 
   return (
     <div
+      data-aos="fade-left"
       className={`overflow-hidden shadow-lg mx-auto bg-gray-800 text-gray-300 rounded-xl ${computedClassName}`}
     >
       <img
         src={pkg.img}
         alt={pkg.location}
-        className={`w-full object-cover rounded-t-xl ${hasWidth ? "h-40" : "h-56"}`}
+        className={`w-full object-cover rounded-t-xl ${
+          hasWidth ? "h-40" : "h-56"
+        }`}
       />
       <div className="p-4 space-y-3">
         <h3 className="text-lg font-semibold text-white">{pkg.location}</h3>

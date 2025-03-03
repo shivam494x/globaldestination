@@ -1,7 +1,9 @@
 "use client";
 import * as React from "react";
-import {  ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -53,6 +55,10 @@ const Nav: React.FC = () => {
   const toggleDropdown = (name: string | null) => {
     setOpenDropdown(openDropdown === name ? null : name);
   };
+
+  React.useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   return (
     <div className="w-full bg-transparent">

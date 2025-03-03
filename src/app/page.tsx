@@ -3,6 +3,7 @@ import Card from "@/components/PackageCard";
 import PackageCardSlider from "@/components/PackageCardSlider";
 import Divider from "@/components/UnderlineBlock";
 import { ArrowUp, Calendar, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const imgs = [
   "/img/home/IndiaGate.webp",
@@ -141,7 +142,10 @@ export default function Home() {
         <div className="absolute left-0 top-0 w-full h-full z-0 brightness-50">
           <Crouser imgs={imgs} />
         </div>
-        <div className="relative w-full max-w-2xl text-white z-10">
+        <div
+          data-aos="fade-right"
+          className="relative w-full max-w-2xl text-white z-10"
+        >
           <h1 className="uppercase text-3xl md:text-4xl lg:text-5xl font-semibold font-karla">
             Welcome to Global Destination
           </h1>
@@ -172,46 +176,6 @@ export default function Home() {
           />
         </section>
       ))}
-
-      {/* Hot deals */}
-      <section className="container mx-auto text-white py-10 px-4">
-        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
-          <h3 className="w-max mx-auto">
-            <span className="text-red-500">Hot</span> deals
-            <div className="h-[1px] w-16 bg-red-500 mx-auto mt-2"></div>
-          </h3>
-        </div>
-        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
-          {hotDeals.map((pkg, index) => (
-            <div key={index} className="relative w-max mx-auto">
-              <div className="absolute -top-2 -left-4 bg-red-500 text-white text-xs px-3 py-2 rounded-sm font-semibold uppercase">
-                {pkg.offer}
-              </div>
-              <Card pkg={pkg} color="red" />
-            </div>
-          ))}
-        </div>
-      </section>
-      
-      {/* Fixed departure */}
-      <section className="container mx-auto text-white py-10 px-4">
-        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
-          <h3 className="w-max mx-auto">
-            <span className="text-yellow-500">Fixed</span> Departure
-            <div className="h-[1px] w-16 bg-yellow-500 mx-auto mt-2"></div>
-          </h3>
-        </div>
-        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
-          {fixedDeparture.map((pkg, index) => (
-            <div key={index} className="relative w-max mx-auto">
-              <div className="absolute -top-2 -left-4 bg-yellow-500 text-white text-sm px-2 py-2 rounded-sm font-semibold uppercase">
-                {pkg.offer}
-              </div>
-              <Card pkg={pkg} color="yellow" />
-            </div>
-          ))}
-        </div>
-      </section>
       {/* Why choose us */}
       <section className="w-full bg-white text-darkBlue section-x section-y">
         <div className="container mx-auto px-4 md:px-8 xl:px-12">
@@ -241,7 +205,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-center">
+            <div className="md:w-1/2 flex justify-center overflow-hidden">
               <img
                 src="/img/home/whyUs.webp"
                 alt="Why Choose Us"
@@ -251,16 +215,58 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Hot deals */}
+      <section className="container mx-auto text-white py-10 px-4 overflow-hidden">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
+          <h3 className="w-max mx-auto">
+            <span className="text-red-500">Hot</span> deals
+            <div className="h-[1px] w-16 bg-red-500 mx-auto mt-2"></div>
+          </h3>
+        </div>
+        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+          {hotDeals.map((pkg, index) => (
+            <div key={index} className="relative w-max mx-auto">
+              <div className="absolute z-20 -top-2 -left-4 bg-red-500 text-white text-xs px-3 py-2 rounded-sm font-semibold uppercase">
+                {pkg.offer}
+              </div>
+              <Card pkg={pkg} color="red" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Fixed departure */}
+      <section className="container mx-auto text-white py-10 px-4 overflow-hidden">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
+          <h3 className="w-max mx-auto">
+            <span className="text-yellow-500">Fixed</span> Departure
+            <div className="h-[1px] w-16 bg-yellow-500 mx-auto mt-2"></div>
+          </h3>
+        </div>
+        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+          {fixedDeparture.map((pkg, index) => (
+            <div key={index} className="relative w-max mx-auto">
+              <div className="absolute z-20 -top-2 -left-4 bg-yellow-500 text-white text-sm px-2 py-2 rounded-sm font-semibold uppercase">
+                {pkg.offer}
+              </div>
+              <Card pkg={pkg} color="yellow" />
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Testimonials */}
       <section className="w-full bg-white">
         <div className="container mx-auto section-x section-y">
-          <button className="flex items-center text-lg group gap-2 w-max mx-auto cursor-pointer px-16 py-8 border-2 border-blue text-darkBlue font-bold rounded-full transition">
+          <Link 
+          href={'/testimonials'}
+          className="flex items-center text-lg group gap-2 w-max mx-auto cursor-pointer px-16 py-8 border-2 border-blue text-darkBlue font-bold rounded-full transition">
+
             <span className="group-hover:-translate-x-3 duration-150">
               View Testimonials
             </span>
             <ArrowUp className="w-5 h-5 rotate-45 group-hover:translate-x-3 duration-150" />
-          </button>
+          </Link>
         </div>
       </section>
     </div>
