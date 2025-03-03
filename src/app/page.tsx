@@ -9,39 +9,37 @@ const imgs = [
   "/img/home/kashmir.webp",
 ];
 
-const generatePackages = (imageUrl: string) => [
-  { id: 1, location: "Goa, India", days: "5 Days & 4 Nights", img: imageUrl },
-  {
-    id: 2,
-    location: "Jaipur, India",
-    days: "3 Days & 2 Nights",
+const generatePackages = (
+  imageUrl: string,
+  locations: { id: number; location: string; days: string }[]
+) =>
+  locations.map(({ id, location, days }) => ({
+    id,
+    location,
+    days,
     img: imageUrl,
-  },
-  {
-    id: 3,
-    location: "Kashmir, India",
-    days: "7 Days & 6 Nights",
-    img: imageUrl,
-  },
-  {
-    id: 4,
-    location: "Kashmir, India",
-    days: "7 Days & 6 Nights",
-    img: imageUrl,
-  },
-  {
-    id: 5,
-    location: "Kashmir, India",
-    days: "7 Days & 6 Nights",
-    img: imageUrl,
-  },
-];
+  }));
 
 const DomesticPackages = generatePackages(
-  "https://www.thebluekite.com/ckfinder/userfiles/images/15%20Fun%20Things%20To%20Do%20In%20Palolem%20Beach%2C%20South%20Goa%20-%20Trot_World.jpg"
+  "https://www.thebluekite.com/ckfinder/userfiles/images/15%20Fun%20Things%20To%20Do%20In%20Palolem%20Beach%2C%20South%20Goa%20-%20Trot_World.jpg",
+  [
+    { id: 1, location: "Goa, India", days: "5 Days & 4 Nights" },
+    { id: 2, location: "Jaipur, India", days: "3 Days & 2 Nights" },
+    { id: 3, location: "Kashmir, India", days: "7 Days & 6 Nights" },
+    { id: 4, location: "Manali, India", days: "6 Days & 5 Nights" },
+    { id: 5, location: "Kerala, India", days: "5 Days & 4 Nights" },
+  ]
 );
+
 const InternationalPackages = generatePackages(
-  "https://img.etimg.com/thumb/msid-31692177,width-640,resizemode-4/spending-lifestyle/how-to-plan-your-trip-to-france.jpg"
+  "https://img.etimg.com/thumb/msid-31692177,width-640,resizemode-4/spending-lifestyle/how-to-plan-your-trip-to-france.jpg",
+  [
+    { id: 1, location: "Paris, France", days: "7 Days & 6 Nights" },
+    { id: 2, location: "Bali, Indonesia", days: "5 Days & 4 Nights" },
+    { id: 3, location: "Dubai, UAE", days: "4 Days & 3 Nights" },
+    { id: 4, location: "Maldives", days: "6 Days & 5 Nights" },
+    { id: 5, location: "Switzerland", days: "8 Days & 7 Nights" },
+  ]
 );
 
 export default function Home() {
@@ -139,7 +137,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="w-full bg-white">
         <div className="container mx-auto section-x section-y">
-          <button className="flex items-center text-lg group gap-2 w-max mx-auto px-16 py-8 border-2 border-blue text-darkBlue font-bold rounded-full transition">
+          <button className="flex items-center text-lg group gap-2 w-max mx-auto cursor-pointer px-16 py-8 border-2 border-blue text-darkBlue font-bold rounded-full transition">
             <span className="group-hover:-translate-x-3 duration-150">
               View Testimonials
             </span>
