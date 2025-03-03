@@ -1,19 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
-import Divider from "./UnderlineBlock";
 
 export const Footer = () => {
   const footerLinks = [
-    { title: "About us", links: ["About us", "Blogs"] },
+    {
+      title: "About us",
+      links: [
+        { name: "About us", path: "/about" },
+        { name: "Blogs", path: "/blogs" },
+      ],
+    },
     {
       title: "Packages",
-      links: ["International packages", "Domestic packages", "Fixed Departure"],
+      links: [
+        { name: "International packages", path: "/packages/international" },
+        { name: "Domestic packages", path: "/packages/domestic" },
+        { name: "Fixed Departure", path: "/packages/fixed-departure" },
+        { name: "Hot Offers", path: "/packages/hot-offers" },
+      ],
     },
     {
       title: "Legal",
-      links: ["Privacy & policy", "Terms & conditions", "Cancellation policy"],
+      links: [
+        { name: "Privacy & Policy", path: "/legal/privacy-policy" },
+        { name: "Terms & Conditions", path: "/legal/terms-conditions" },
+        { name: "Cancellation Policy", path: "/legal/cancellation-policy" },
+      ],
     },
-    { title: "Social", links: ["Twitter", "Instagram"] },
+    {
+      title: "Social",
+      links: [
+        { name: "Twitter", path: "https://twitter.com" },
+        { name: "FaceBook", path: "https://instagram.com" },
+        { name: "Instagram", path: "https://whatsapp.com" },
+      ],
+    },
   ];
 
   return (
@@ -55,12 +76,12 @@ export const Footer = () => {
                 <div className="h-[1px] rounded-full w-4/5 bg-blue my-3"></div>
                 <ul className="mt-2 space-y-2">
                   {section.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.name}>
                       <Link
-                        href="/"
+                        href={link.path}
                         className="transition-all capitalize duration-300 text-gray-400 text-xs lg:text-sm hover:text-green-300 hover:translate-x-0.5 inline-block"
                       >
-                        {link}
+                        {link.name}
                       </Link>
                     </li>
                   ))}

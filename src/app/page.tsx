@@ -1,14 +1,20 @@
 import Crouser from "@/components/Crouser";
+import Card from "@/components/PackageCard";
 import PackageCardSlider from "@/components/PackageCardSlider";
 import Divider from "@/components/UnderlineBlock";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Calendar, MapPin } from "lucide-react";
 
 const imgs = [
   "/img/home/IndiaGate.webp",
   "/img/home/3.webp",
   "/img/home/kashmir.webp",
 ];
-
+type Package = {
+  id: number;
+  location: string;
+  days: string;
+  img: string;
+};
 const generatePackages = (
   imageUrl: string,
   locations: { id: number; location: string; days: string }[]
@@ -41,8 +47,93 @@ const InternationalPackages = generatePackages(
     { id: 5, location: "Switzerland", days: "8 Days & 7 Nights" },
   ]
 );
+const hotDeals = [
+  {
+    img: "https://static.vecteezy.com/system/resources/previews/012/168/187/non_2x/beautiful-sunset-on-the-beach-with-palm-tree-for-travel-and-vacation-free-photo.JPG",
+    location: "Maldives",
+    days: "5 Days / 4 Nights",
+    offer: "20% Off",
+  },
+  {
+    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/f9/1c/swiss-alps.jpg?w=1400&h=1400&s=1",
+    location: "Swiss Alps",
+    days: "7 Days / 6 Nights",
+    offer: "Limited Time Deal",
+  },
+  {
+    img: "https://as2.ftcdn.net/jpg/01/81/07/91/1000_F_181079136_irl2A25Clc5Bi2Lwa3Q9kJvF0RlFv8tU.jpg",
+    location: "New York",
+    days: "4 Days / 3 Nights",
+    offer: "Special Offer",
+  },
+
+  {
+    img: "https://as2.ftcdn.net/jpg/01/81/07/91/1000_F_181079136_irl2A25Clc5Bi2Lwa3Q9kJvF0RlFv8tU.jpg",
+    location: "New York",
+    days: "4 Days / 3 Nights",
+    offer: "Special Offer",
+  },
+  {
+    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/f9/1c/swiss-alps.jpg?w=1400&h=1400&s=1",
+    location: "Swiss Alps",
+    days: "7 Days / 6 Nights",
+    offer: "Limited Time Deal",
+  },
+];
+const fixedDeparture = [
+  {
+    img: "https://static.vecteezy.com/system/resources/previews/012/168/187/non_2x/beautiful-sunset-on-the-beach-with-palm-tree-for-travel-and-vacation-free-photo.JPG",
+    location: "Maldives",
+    days: "5 Days / 4 Nights",
+    offer: "From 10 Feb to 20 March",
+  },
+  {
+    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/f9/1c/swiss-alps.jpg?w=1400&h=1400&s=1",
+    location: "Swiss Alps",
+    days: "7 Days / 6 Nights",
+    offer: "From 5 March to 25 April",
+  },
+  {
+    img: "https://as2.ftcdn.net/jpg/01/81/07/91/1000_F_181079136_irl2A25Clc5Bi2Lwa3Q9kJvF0RlFv8tU.jpg",
+    location: "New York",
+    days: "4 Days / 3 Nights",
+    offer: "From 15 Feb to 30 March",
+  },
+  {
+    img: "https://as2.ftcdn.net/jpg/01/81/07/91/1000_F_181079136_irl2A25Clc5Bi2Lwa3Q9kJvF0RlFv8tU.jpg",
+    location: "New York",
+    days: "4 Days / 3 Nights",
+    offer: "From 1 April to 15 May",
+  },
+  {
+    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/f9/1c/swiss-alps.jpg?w=1400&h=1400&s=1",
+    location: "Swiss Alps",
+    days: "7 Days / 6 Nights",
+    offer: "From 10 May to 30 June",
+  },
+];
 
 export default function Home() {
+  const packageCategories: {
+    id: string;
+    title: string;
+    color: "green" | "blue";
+    packages: Package[];
+  }[] = [
+    {
+      id: "domestic_deals",
+      title: "Domestic",
+      color: "green",
+      packages: DomesticPackages,
+    },
+    {
+      id: "international_deals",
+      title: "International",
+      color: "blue",
+      packages: InternationalPackages,
+    },
+  ];
+
   return (
     <div className="bg-darkBlue">
       {/* Hero section */}
@@ -62,20 +153,7 @@ export default function Home() {
       </section>
 
       {/* Package Sections */}
-      {[
-        {
-          id: "domestic_deals",
-          title: "Domestic",
-          color: "green-400",
-          packages: DomesticPackages,
-        },
-        {
-          id: "international_deals",
-          title: "International",
-          color: "blue",
-          packages: InternationalPackages,
-        },
-      ].map(({ id, title, color, packages }) => (
+      {packageCategories.map(({ id, title, color, packages }) => (
         <section
           key={id}
           id={id}
@@ -84,16 +162,56 @@ export default function Home() {
           <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
             <h3 className="w-max mx-auto">
               Our <span className={`text-${color}`}>{title}</span> Packages
-              <Divider />
+              <Divider color={color === "green" ? "bg-green" : "bg-blue"} />
             </h3>
           </div>
           <PackageCardSlider
             packages={packages}
-            reverse={id === "domestic_deals" ? true : false}
+            color={color}
+            reverse={id === "domestic_deals"}
           />
         </section>
       ))}
 
+      {/* Hot deals */}
+      <section className="container mx-auto text-white py-10 px-4">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
+          <h3 className="w-max mx-auto">
+            <span className="text-red-500">Hot</span> deals
+            <div className="h-[1px] w-16 bg-red-500 mx-auto mt-2"></div>
+          </h3>
+        </div>
+        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+          {hotDeals.map((pkg, index) => (
+            <div key={index} className="relative w-max mx-auto">
+              <div className="absolute -top-2 -left-4 bg-red-500 text-white text-xs px-3 py-2 rounded-sm font-semibold uppercase">
+                {pkg.offer}
+              </div>
+              <Card pkg={pkg} color="red" />
+            </div>
+          ))}
+        </div>
+      </section>
+      
+      {/* Fixed departure */}
+      <section className="container mx-auto text-white py-10 px-4">
+        <div className="text-2xl md:text-3xl font-bold capitalize font-karla mb-10 text-center">
+          <h3 className="w-max mx-auto">
+            <span className="text-yellow-500">Fixed</span> Departure
+            <div className="h-[1px] w-16 bg-yellow-500 mx-auto mt-2"></div>
+          </h3>
+        </div>
+        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+          {fixedDeparture.map((pkg, index) => (
+            <div key={index} className="relative w-max mx-auto">
+              <div className="absolute -top-2 -left-4 bg-yellow-500 text-white text-sm px-2 py-2 rounded-sm font-semibold uppercase">
+                {pkg.offer}
+              </div>
+              <Card pkg={pkg} color="yellow" />
+            </div>
+          ))}
+        </div>
+      </section>
       {/* Why choose us */}
       <section className="w-full bg-white text-darkBlue section-x section-y">
         <div className="container mx-auto px-4 md:px-8 xl:px-12">

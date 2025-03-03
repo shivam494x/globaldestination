@@ -1,7 +1,13 @@
 import React from "react";
 
-const Divider: React.FC = () => {
-  return <div className="h-[1px] rounded-full w-3/4 mx-auto bg-blue-500 my-3"></div>;
+interface DividerProps {
+  color?: string; // Optional prop for background color
+}
+
+const Divider: React.FC<DividerProps> = ({ color = "bg-blue-500" }) => {
+  return (
+    <div className={`h-[1px] rounded-full w-3/4 mx-auto ${color} my-3`}></div>
+  );
 };
 
 export default Divider;
