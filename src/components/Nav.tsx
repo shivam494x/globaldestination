@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { ArrowDown, ChevronDown, Menu, X } from "lucide-react";
+import {  ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
